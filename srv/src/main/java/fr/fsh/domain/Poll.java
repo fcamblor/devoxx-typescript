@@ -1,10 +1,13 @@
 package fr.fsh.domain;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import fr.fsh.rest.Views;
 import org.jongo.marshall.jackson.oid.Id;
 import org.jongo.marshall.jackson.oid.ObjectId;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 /**
  * Created by fcamblor on 30/09/16.
@@ -18,12 +21,25 @@ public class Poll {
     @Size(min = 5)
     String name;
 
+    @NotNull
+    @Size(min = 1)
+    @JsonView({Views.Private.class, Views.Detail.class})
+    List<Topic> topics;
+
     public String getId() {
         return id;
     }
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public List<Topic> getTopics() {
+        return topics;
+    }
+
+    public void setTopics(List<Topic> topics) {
+        this.topics = topics;
     }
 
     public String getName() {

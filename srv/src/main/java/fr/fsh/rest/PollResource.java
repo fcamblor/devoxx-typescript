@@ -1,6 +1,8 @@
 package fr.fsh.rest;
 
+import com.google.common.base.Optional;
 import fr.fsh.domain.Poll;
+import org.bson.types.ObjectId;
 import restx.WebException;
 import restx.annotations.*;
 import restx.factory.Component;
@@ -22,6 +24,7 @@ public class PollResource {
 
     @PermitAll
     @POST("/polls")
+    @Consumes("application/json;view=fr.fsh.rest.Views$Detail")
     public Poll createPoll(Poll poll) {
         // Ensuring same poll doesn't exist
         if(polls.get().count("{ name: # }", poll.getName()) != 0){
@@ -34,7 +37,15 @@ public class PollResource {
 
     @PermitAll
     @GET("/polls")
+    @Produces("application/json;view=fr.fsh.rest.Views$Listing")
     public Iterable<Poll> listPolls() {
         return polls.get().find().as(Poll.class);
+    }
+
+    @PermitAll
+    @GET("/polls/{uuid}")
+    @Produces("application/json;view=fr.fsh.rest.Views$Detail")
+    public Optional<Poll> findPollById(String uuid) {
+        return Optional.fromNullable(polls.get().findOne(new ObjectId(uuid)).as(Poll.class));
     }
 }
