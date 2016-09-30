@@ -9,6 +9,7 @@ import restx.annotations.*;
 import restx.factory.Component;
 import restx.jongo.JongoCollection;
 import restx.security.PermitAll;
+import restx.security.RolesAllowed;
 
 import javax.inject.Named;
 
@@ -50,6 +51,16 @@ public class PollResource {
     @Produces("application/json;view=fr.fsh.rest.Views$Detail")
     public Optional<Poll> findPollById(String uuid) {
         return Optional.fromNullable(polls.get().findOne(new ObjectId(uuid)).as(Poll.class));
+    }
+
+    @DELETE("/polls/{pollId}")
+    @RolesAllowed("restx-admin")
+    public Optional<Poll> deletePoll(String pollId) {
+        return findPollById(pollId).transform(p -> {
+            votes.get().remove("{ pollId: # }", pollId);
+            polls.get().remove(new ObjectId(pollId));
+            return p;
+        });
     }
 
     @PermitAll
