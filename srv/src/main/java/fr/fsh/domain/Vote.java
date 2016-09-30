@@ -3,6 +3,7 @@ package fr.fsh.domain;
 import org.jongo.marshall.jackson.oid.Id;
 import org.jongo.marshall.jackson.oid.ObjectId;
 
+import javax.validation.Valid;
 import javax.validation.constraints.*;
 import java.util.List;
 
@@ -44,7 +45,8 @@ public class Vote {
         }
     }
 
-    @NotNull @Size(min=3)
+    @NotNull @Valid
+    @Size(min=3)
     List<VoteEntry> votes;
 
     @AssertTrue(message="You cannot spend more than 10 points on your votes")

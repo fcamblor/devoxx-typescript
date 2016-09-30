@@ -5,6 +5,7 @@ import fr.fsh.rest.Views;
 import org.jongo.marshall.jackson.oid.Id;
 import org.jongo.marshall.jackson.oid.ObjectId;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.List;
@@ -23,6 +24,7 @@ public class Poll {
 
     @NotNull
     @Size(min = 1)
+    @Valid
     @JsonView({Views.Private.class, Views.Detail.class})
     List<Topic> topics;
 
