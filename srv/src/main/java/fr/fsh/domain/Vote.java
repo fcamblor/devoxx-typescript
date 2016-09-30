@@ -47,8 +47,8 @@ public class Vote {
     @NotNull @Size(min=3)
     List<VoteEntry> votes;
 
-    @AssertTrue
-    public boolean voteEntriesValid() {
+    @AssertTrue(message="You cannot spend more than 10 points on your votes")
+    public boolean isVotesSumUnderQuota() {
         return votes.stream().mapToInt(VoteEntry::getPoints).sum() <= 10;
     }
 
