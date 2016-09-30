@@ -22,17 +22,17 @@ public class Vote {
 
     public static class VoteEntry {
         @NotNull
-        String topicName;
+        String topicTitle;
 
         @NotNull @Min(1) @Max(3)
         Integer points;
 
-        public String getTopicName() {
-            return topicName;
+        public String getTopicTitle() {
+            return topicTitle;
         }
 
-        public void setTopicName(String topicName) {
-            this.topicName = topicName;
+        public void setTopicTitle(String topicTitle) {
+            this.topicTitle = topicTitle;
         }
 
         public Integer getPoints() {
