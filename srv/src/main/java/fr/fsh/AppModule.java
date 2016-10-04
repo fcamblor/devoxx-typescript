@@ -1,5 +1,8 @@
 package fr.fsh;
 
+import com.google.common.base.Optional;
+import com.google.common.base.Predicates;
+import com.google.common.collect.ImmutableList;
 import restx.config.ConfigLoader;
 import restx.config.ConfigSupplier;
 import restx.factory.Provides;
@@ -10,9 +13,11 @@ import com.google.common.collect.ImmutableSet;
 import restx.security.*;
 import restx.factory.Module;
 import restx.factory.Provides;
+
 import javax.inject.Named;
 
 import java.nio.file.Paths;
+import java.util.regex.Pattern;
 
 @Module
 public class AppModule {
@@ -70,5 +75,16 @@ public class AppModule {
                         true),
                 credentialsStrategy, defaultAdminPasswordHash),
                 securitySettings);
+    }
+
+    @Provides
+    public CORSAuthorizer getCorsAuthorizer() {
+        return StdCORSAuthorizer.builder()
+                .setOriginMatcher(Predicates.<CharSequence>alwaysTrue())
+                .setPathMatcher(Predicates.contains(Pattern.compile("^/.*")))
+                .setAllowedMethods(ImmutableList.of("GET", "DELETE", "POST", "PUT", "HEAD", "OPTIONS"))
+                .setAllowedHeaders(ImmutableList.of("accept", "authorization", "origin", "content-type", "access-control-allow-credentials", "access-control-request-headers", "access-control-allow-origin"))
+                .setAllowCredentials(Optional.of(Boolean.TRUE))
+                .build();
     }
 }
