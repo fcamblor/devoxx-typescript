@@ -3,6 +3,7 @@ package fr.fsh;
 import restx.factory.Component;
 import restx.factory.Module;
 import restx.factory.Provides;
+import restx.mongo.MongoModule;
 
 import javax.inject.Named;
 
@@ -13,7 +14,7 @@ import javax.inject.Named;
 public class DBModule {
 
     @Provides
-    @Named("mongo.db")
+    @Named(MongoModule.MONGO_DB_NAME)
     public String dbName() {
         return "workshop-votes";
     }
