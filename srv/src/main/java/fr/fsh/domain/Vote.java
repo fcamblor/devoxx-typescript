@@ -25,7 +25,7 @@ public class Vote {
         @NotNull
         String topicTitle;
 
-        @NotNull @Min(1) @Max(3)
+        @NotNull @Min(0) @Max(3)
         Integer points;
 
         public String getTopicTitle() {
