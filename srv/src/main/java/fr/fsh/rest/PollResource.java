@@ -18,8 +18,8 @@ import javax.inject.Named;
  */
 @RestxResource @Component
 public class PollResource {
-    JongoCollection polls;
-    JongoCollection votes;
+    private final JongoCollection polls;
+    private final JongoCollection votes;
 
     public PollResource(@Named("polls") JongoCollection polls, @Named("votes") JongoCollection votes) {
         this.polls = polls;
