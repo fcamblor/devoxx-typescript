@@ -2,19 +2,19 @@
   "name": "4sh-workshops-poll",
   "version": "0.0.0",
   "dependencies": {
-    "angular": "1.2.6",
+    "angular": "1.5.8",
     "json3": "~3.2.6",
     "es5-shim": "~2.1.0",
     "jquery": "~1.10.2",
     "sass-bootstrap": "~3.0.2",
-    "angular-resource": "1.2.6",
-    "angular-cookies": "1.2.6",
-    "angular-sanitize": "1.2.6",
-    "angular-route": "1.2.6"
+    "angular-resource": "1.5.8",
+    "angular-cookies": "1.5.8",
+    "angular-sanitize": "1.5.8",
+    "angular-route": "1.5.8"
   },
   "devDependencies": {
-    "angular-mocks": "1.2.6",
-    "angular-scenario": "1.2.6"
+    "angular-mocks": "1.5.8",
+    "angular-scenario": "1.5.8"
   },
   "buildConfig": {
     "layout": {
@@ -26,5 +26,8 @@
       "port": 8080,
       "context": "/api"
     }
+  },
+  "resolutions": {
+    "angular": "1.5.8"
   }
 }
