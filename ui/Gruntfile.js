@@ -46,9 +46,9 @@ module.exports = function (grunt) {
         files: ['test/spec/{,*/}*.js'],
         tasks: ['newer:jshint:test', 'karma']
       },
-      compass: {
+      sass: {
         files: ['<%= layout.app %>/styles/{,*/}*.{scss,sass}'],
-        tasks: ['compass:server', 'autoprefixer']
+        tasks: ['sass', 'autoprefixer']
       },
       gruntfile: {
         files: ['Gruntfile.js']
@@ -70,19 +70,24 @@ module.exports = function (grunt) {
       options: {
         port: 9000,
         // Change this to '0.0.0.0' to access the server from outside.
-        hostname: 'localhost',
-        livereload: 35729
+        hostname: '0.0.0.0',
+        livereload: 35729,
+        base: [
+          '.tmp',
+          '<%= layout.app %>'
+        ],
+        middleware: function (connect, options, middlewares) {
+          return middlewares;
+        },
+        proxies: buildConfig.server ? [{
+          context: buildConfig.server.context,
+          host: buildConfig.server.host,
+          port: buildConfig.server.port,
+          https: buildConfig.server.https || false,
+          changeOrigin: false,
+          xforward: false
+        }] : []
       },
-        proxies: buildConfig.server ? [
-            {
-                context: buildConfig.server.context,
-                host: buildConfig.server.host,
-                port: buildConfig.server.port,
-                https: buildConfig.server.https || false,
-                changeOrigin: false,
-                xforward: false
-            }
-        ] : [],
       livereload: {
         options: {
           open: true,
@@ -97,21 +102,6 @@ module.exports = function (grunt) {
                     mountFolder(connect, buildConfig.layout.app)
                 ];
             }
-        }
-      },
-      test: {
-        options: {
-          port: 9001,
-          base: [
-            '.tmp',
-            'test',
-            '<%= layout.app %>'
-          ]
-        }
-      },
-      dist: {
-        options: {
-          base: '<%= layout.dist %>'
         }
       }
     },
@@ -172,35 +162,22 @@ module.exports = function (grunt) {
       }
     },
 
-
-
-
     // Compiles Sass to CSS and generates necessary files if requested
-    compass: {
+    sass: {
       options: {
-        sassDir: '<%= layout.app %>/styles',
-        cssDir: '.tmp/styles',
-        generatedImagesDir: '.tmp/images/generated',
-        imagesDir: '<%= layout.app %>/images',
-        javascriptsDir: '<%= layout.app %>/scripts',
-        fontsDir: '<%= layout.app %>/styles/fonts',
-        importPath: '<%= layout.app %>/bower_components',
-        httpImagesPath: '/images',
-        httpGeneratedImagesPath: '/images/generated',
-        httpFontsPath: '/styles/fonts',
-        relativeAssets: false,
-        assetCacheBuster: false,
-        raw: 'Sass::Script::Number.precision = 10\n'
+        sourceMap: true,
+        includePaths: [
+          '<%= layout.app %>/bower_components'
+        ]
       },
       dist: {
-        options: {
-          generatedImagesDir: '<%= layout.dist %>/images/generated'
-        }
-      },
-      server: {
-        options: {
-          debugInfo: true
-        }
+        files: [{
+          expand: true,
+          cwd: '<%= layout.app %>/styles',
+          src: ['*.{scss,sass}'],
+          dest: '.tmp/styles',
+          ext: '.css'
+        }]
       }
     },
 
@@ -329,14 +306,8 @@ module.exports = function (grunt) {
 
     // Run some tasks in parallel to speed up the build process
     concurrent: {
-      server: [
-        'compass:server'
-      ],
-      test: [
-        'compass'
-      ],
       dist: [
-        'compass:dist',
+        'sass:dist',
         'imagemin',
         'svgmin'
       ]
@@ -379,15 +350,15 @@ module.exports = function (grunt) {
 
 
   grunt.registerTask('serve', function (target) {
-    if (target === 'dist') {
-      return grunt.task.run(['build', 'connect:dist:keepalive']);
-    }
+    // if (target === 'dist') {
+    //   return grunt.task.run(['build', 'connect:dist:keepalive']);
+    // }
 
     grunt.task.run([
       'clean:server',
       'bower-install',
-      'concurrent:server',
       'autoprefixer',
+      'sass',
       'configureProxies',
       'connect:livereload',
       'watch'
@@ -401,9 +372,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('test', [
     'clean:server',
-    'concurrent:test',
     'autoprefixer',
-    'connect:test',
     'karma'
   ]);
 
