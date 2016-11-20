@@ -6,7 +6,8 @@ angular.module('4sh-workshops-pollApp', [
   'ngSanitize',
   'ui.router'
 ])
-.config(function ($stateProvider, $urlRouterProvider) {
+.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
+  $locationProvider.html5Mode(true).hashPrefix('!');
   $urlRouterProvider.otherwise('/workshops');
 
   $stateProvider

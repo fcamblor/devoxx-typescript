@@ -4,6 +4,7 @@
   "dependencies": {},
   "devDependencies": {
     "bower": "1.8.0",
+    "connect-modrewrite": "0.9.0",
     "grunt": "~0.4.1",
     "grunt-autoprefixer": "~0.4.0",
     "grunt-bower-install": "~0.7.0",

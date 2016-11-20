@@ -1,5 +1,7 @@
 'use strict';
 
+var modRewrite = require('connect-modrewrite');
+
 // # Globbing
 // for performance reasons we're only matching one level down:
 // 'test/spec/{,*/}*.js'
@@ -95,12 +97,23 @@ module.exports = function (grunt) {
             '.tmp',
             '<%= layout.app %>'
           ],
-            middleware: function (connect) {
-                return [
-                    proxyRequest,
-                    mountFolder(connect, '.tmp'),
-                    mountFolder(connect, buildConfig.layout.app)
-                ];
+            middleware: function (connect, options) {
+              var middlewares = [];
+
+              middlewares.push(modRewrite(['^[^\\.]*$ /index.html [L]'])); //Matches everything that does not contain a '.' (period)
+              options.base.forEach(function (base) {
+                middlewares.push(connect.static(base));
+              });
+
+              middlewares.push(
+                connect.static('.tmp'),
+                connect().use(
+                  '/bower_components',
+                  connect.static('./bower_components')
+                )
+              );
+
+              return middlewares;
             }
         }
       }
