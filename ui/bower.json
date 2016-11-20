@@ -9,8 +9,8 @@
     "angular-resource": "1.5.8",
     "angular-cookies": "1.5.8",
     "angular-sanitize": "1.5.8",
-    "angular-route": "1.5.8",
-    "material-design-lite": "1.2.1"
+    "material-design-lite": "1.2.1",
+    "angular-ui-router": "1.0.0-beta.3"
   },
   "devDependencies": {
     "angular-mocks": "1.5.8",

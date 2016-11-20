@@ -4,15 +4,20 @@ angular.module('4sh-workshops-pollApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
-  'ngRoute'
+  'ui.router'
 ])
-  .config(function ($routeProvider) {
-    $routeProvider
-      .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
-      })
-      .otherwise({
-        redirectTo: '/'
-      });
-  });
+.config(function ($stateProvider, $urlRouterProvider) {
+  $urlRouterProvider.otherwise('/workshops');
+
+  $stateProvider
+    .state({
+      name: 'app',
+      abstract: true,
+      template: "<ui-view/>"
+    })
+    .state({
+      name: 'app.workshops',
+      url: '/workshops',
+      component: 'workshopListPage'
+    });
+});
