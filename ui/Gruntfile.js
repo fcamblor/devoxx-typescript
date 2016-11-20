@@ -71,7 +71,7 @@ module.exports = function (grunt) {
       options: {
         port: 9000,
         // Change this to '0.0.0.0' to access the server from outside.
-        hostname: '0.0.0.0',
+        hostname: 'localhost',
         livereload: 35729,
         base: [
           '.tmp',
@@ -79,15 +79,21 @@ module.exports = function (grunt) {
         ],
         middleware: function (connect, options, middlewares) {
           return middlewares;
+        }
+      },
+      server: {
+        options: {
+          port: 9000,
+          hostname: 'localhost'
         },
-        proxies: buildConfig.server ? [{
-          context: buildConfig.server.context,
-          host: buildConfig.server.host,
-          port: buildConfig.server.port,
-          https: buildConfig.server.https || false,
+        proxies: [{
+          context: '/api',
+          host: 'localhost',
+          port: 8080,
+          https: false,
           changeOrigin: false,
           xforward: false
-        }] : []
+        }]
       },
       livereload: {
         options: {
@@ -96,24 +102,28 @@ module.exports = function (grunt) {
             '.tmp',
             '<%= layout.app %>'
           ],
-            middleware: function (connect, options) {
-              var middlewares = [];
+          middleware: function (connect, options) {
+            var middlewares = [
+              proxyRequest
+            ];
 
-              middlewares.push(modRewrite(['^[^\\.]*$ /index.html [L]'])); //Matches everything that does not contain a '.' (period)
-              options.base.forEach(function (base) {
-                middlewares.push(connect.static(base));
-              });
+            // Matches everything that does not contain a '.' (period)
+            middlewares.push(modRewrite([
+              '^[^\\.]*$ /index.html [L]'
+            ]));
+            options.base.forEach(function (base) {
+              middlewares.push(connect.static(base));
+            });
 
-              middlewares.push(
-                connect.static('.tmp'),
-                connect().use(
-                  '/bower_components',
-                  connect.static('./bower_components')
-                )
-              );
+            middlewares.push(
+              connect().use(
+                '/bower_components',
+                connect.static('./bower_components')
+              )
+            );
 
-              return middlewares;
-            }
+            return middlewares;
+          }
         }
       }
     },
@@ -371,7 +381,7 @@ module.exports = function (grunt) {
       'bower-install',
       'autoprefixer',
       'sass',
-      'configureProxies',
+      'configureProxies:server',
       'connect:livereload',
       'watch'
     ]);

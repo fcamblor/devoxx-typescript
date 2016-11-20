@@ -20,11 +20,6 @@
     "layout": {
       "app": "app",
       "dist": "dist"
-    },
-    "server": {
-      "host": "localhost",
-      "port": 8080,
-      "context": "/api"
     }
   },
   "overrides": {
