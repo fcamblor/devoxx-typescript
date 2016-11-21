@@ -26,7 +26,7 @@ public class PollResource {
         this.votes = votes;
     }
 
-    @PermitAll
+    @RolesAllowed("restx-admin")
     @POST("/polls")
     @Consumes("application/json;view=fr.fsh.rest.Views$Detail")
     public Poll createPoll(Poll poll) {
