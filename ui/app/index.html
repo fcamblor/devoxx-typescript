@@ -28,8 +28,30 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <div class="container">
-      <ui-view></ui-view>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+      <header class="mdl-layout__header">
+        <div class="mdl-layout__header-row">
+          <!-- Title -->
+          <span class="mdl-layout-title">{{pageTitle}}</span>
+          <!-- Add spacer, to align navigation to the right -->
+          <div class="mdl-layout-spacer"></div>
+          <!-- Navigation -->
+          <!--<nav class="mdl-navigation mdl-layout--large-screen-only">-->
+            <!--<a class="mdl-navigation__link" href="">Link</a>-->
+          <!--</nav>-->
+        </div>
+      </header>
+      <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">{{pageTitle}}</span>
+        <!--<nav class="mdl-navigation">-->
+          <!--<a class="mdl-navigation__link" href="">Link</a>-->
+        <!--</nav>-->
+      </div>
+      <main class="mdl-layout__content">
+        <div class="page-content">
+          <ui-view></ui-view>
+        </div>
+      </main>
     </div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
