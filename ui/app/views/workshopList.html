@@ -3,7 +3,9 @@
   <li ng-repeat="poll in $ctrl.polls" class="mdl-list__item">
     <span class="mdl-list__item-primary-content">
         <i class="material-icons mdl-list__item-icon">event</i>
+      <a ui-sref="app.workshops-vote({ workshopId: poll._id })">
         <span class="mdl-chip__text">{{poll.name}}</span>
+      </a>
     </span>
   </li>
 </ul>
