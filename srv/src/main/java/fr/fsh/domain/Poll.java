@@ -2,6 +2,7 @@ package fr.fsh.domain;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import fr.fsh.rest.Views;
+import org.joda.time.DateTime;
 import org.jongo.marshall.jackson.oid.Id;
 import org.jongo.marshall.jackson.oid.ObjectId;
 
@@ -21,6 +22,9 @@ public class Poll {
     @NotNull
     @Size(min = 5)
     String name;
+
+    @NotNull
+    DateTime date;
 
     @NotNull
     @Size(min = 1)
@@ -50,5 +54,13 @@ public class Poll {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public DateTime getDate() {
+        return date;
+    }
+
+    public void setDate(DateTime date) {
+        this.date = date;
     }
 }
