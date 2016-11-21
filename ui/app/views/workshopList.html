@@ -1,62 +1,9 @@
-<div class="header">
-  <ul class="nav nav-pills pull-right">
-    <li class="active"><a ng-href="#">Home</a></li>
-    <li><a ng-href="#">About</a></li>
-    <li><a ng-href="#">Contact</a></li>
-  </ul>
-  <h3 class="text-muted">4sh-workshops-poll</h3>
-</div>
 
-<div class="jumbotron">
-  <h1>'Allo, 'Allo!</h1>
-  <p class="lead">
-    <img src="images/yeoman.png" alt="I'm Yeoman"><br>
-    Always a pleasure scaffolding your apps.
-  </p>
-  <p><a class="btn btn-lg btn-success" ng-href="#">Splendid!</a></p>
-</div>
-
-<ul class="demo-list-item mdl-list">
-  <li class="mdl-list__item">
+<ul class="mdl-list">
+  <li ng-repeat="poll in $ctrl.polls" class="mdl-list__item">
     <span class="mdl-list__item-primary-content">
-      <i class="material-icons mdl-list__item-avatar">person</i>
-      Bryan Cranston
-    </span>
-  </li>
-  <li class="mdl-list__item">
-    <span class="mdl-list__item-primary-content">
-      <i class="material-icons mdl-list__item-avatar">person</i>
-      Aaron Paul
-    </span>
-  </li>
-  <li class="mdl-list__item">
-    <span class="mdl-list__item-primary-content">
-      <i class="material-icons mdl-list__item-avatar">person</i>
-      Bob Odenkirk
+        <i class="material-icons mdl-list__item-icon">event</i>
+        <span class="mdl-chip__text">{{poll.name}}</span>
     </span>
   </li>
 </ul>
-
-<div class="row marketing">
-  <h4>RESTX</h4>
-  <p>
-     The lightweight pure Java open source REST framework.
-  </p>
-
-  <h4>Twitter Bootstrap</h4>
-  <p>
-     Bootstrap, a sleek, intuitive, and powerful mobile first front-end framework for faster and easier web development.
-  </p>
-
-  <h4>Angular</h4>
-  <p>
-    AngularJS is a toolset for building the framework most suited to your application development.
-  </p>
-
-  <h4>Karma</h4>
-  <p>Spectacular Test Runner for JavaScript.</p>
-</div>
-
-<div class="footer">
-  <p>? from the Yeoman and RESTX team</p>
-</div>
