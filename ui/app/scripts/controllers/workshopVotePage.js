@@ -35,7 +35,7 @@ angular.module('4sh-workshops-pollApp')
             })
           }).then(function(){
             alertify.success("Vote saved !");
-            $state.go("app.workshops");
+            $state.go("app.workshops-vote-results", { workshopId: $stateParams.workshopId });
           }, function(result) {
             return alertify.error(result.data);
           });
