@@ -19,7 +19,7 @@ angular.module('4sh-workshops-pollApp', [
     .state({ name: 'app', abstract: true, template: "<ui-view/>" })
     .state({ name: 'app.workshops', url: '/workshops', component: 'workshopListPage', title: "Workshops" })
     .state({
-      name: 'app.workshops-vote', url: '/workshops/{workshopId}/vote', component: 'workshopVotesPage', title: 'Voter pour un workshop',
+      name: 'app.workshops-vote', url: '/workshops/{workshopId}/vote', component: 'workshopVotesPage', title: 'Vote for topics',
       resolve: {
         detailedPoll: function ($http, $stateParams) {
           return $http.get('api/polls/' + $stateParams.workshopId).then(function (detailedPoll) { return detailedPoll.data; });
