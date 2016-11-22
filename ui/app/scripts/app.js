@@ -17,7 +17,7 @@ angular.module('4sh-workshops-pollApp', [
     setTimeout(function(){ componentHandler.upgradeDom(); }, 300);
   });
 }])
-.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
+.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function ($stateProvider, $urlRouterProvider, $locationProvider) {
   $locationProvider.html5Mode(true).hashPrefix('!');
   $urlRouterProvider.otherwise('/workshops');
 
@@ -27,17 +27,17 @@ angular.module('4sh-workshops-pollApp', [
     .state({
       name: 'app.workshops-vote', url: '/workshops/{workshopId}/vote', component: 'workshopVotesPage', title: 'Vote for topics',
       resolve: {
-        detailedPoll: function ($http, $stateParams) {
+        detailedPoll: ['$http', '$stateParams', function ($http, $stateParams) {
           return $http.get('api/polls/' + $stateParams.workshopId).then(function (detailedPoll) { return detailedPoll.data; });
-        }
+        }]
       }
     })
     .state({
       name: 'app.workshops-vote-results', url: '/workshops/{workshopId}/voteResults', component: 'workshopVoteResultsPage', title: 'Workshop vote results',
       resolve: {
-        pollVotes: function ($http, $stateParams) {
+        pollVotes: ['$http', '$stateParams', function ($http, $stateParams) {
           return $http.get('api/polls/' + $stateParams.workshopId+"/votes").then(function (pollVotes) { return pollVotes.data; });
-        }
+        }]
       }
     });
-});
+}]);

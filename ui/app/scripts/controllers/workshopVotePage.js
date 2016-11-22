@@ -6,7 +6,7 @@ angular.module('4sh-workshops-pollApp')
     bindings: {
       detailedPoll: '<'
     },
-    controller: function($http, $stateParams, $state) {
+    controller: ['$http', '$stateParams', '$state', function($http, $stateParams, $state) {
       var self = this;
       console.log($stateParams.workshopId);
       angular.extend(self, {
@@ -41,5 +41,5 @@ angular.module('4sh-workshops-pollApp')
           });
         }
       });
-    }
+    }]
   });
