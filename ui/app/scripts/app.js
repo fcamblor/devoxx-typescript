@@ -9,6 +9,12 @@ angular.module('4sh-workshops-pollApp', [
 .run(['$rootScope', '$transitions', function($rootScope, $transitions) {
   $transitions.onSuccess({}, function(transition){
     $rootScope.pageTitle = transition.targetState()._definition.title || "TODO: PROVIDE TITLE IN STATE";
+
+    // That's crappy, but material design lite needs upgradeDom() call to apply mdl styles / behaviour on the DOM on every
+    // DOM change.
+    // We handle here only cases where we want to apply MDL on new view content
+    // Note that it won't work if we update the DOM without changing state
+    setTimeout(function(){ componentHandler.upgradeDom(); }, 300);
   });
 }])
 .config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
