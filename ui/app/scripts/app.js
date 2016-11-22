@@ -25,5 +25,13 @@ angular.module('4sh-workshops-pollApp', [
           return $http.get('api/polls/' + $stateParams.workshopId).then(function (detailedPoll) { return detailedPoll.data; });
         }
       }
+    })
+    .state({
+      name: 'app.workshops-vote-results', url: '/workshops/{workshopId}/voteResults', component: 'workshopVoteResultsPage', title: 'Workshop vote results',
+      resolve: {
+        pollVotes: function ($http, $stateParams) {
+          return $http.get('api/polls/' + $stateParams.workshopId+"/votes").then(function (pollVotes) { return pollVotes.data; });
+        }
+      }
     });
 });

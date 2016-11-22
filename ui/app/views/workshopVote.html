@@ -41,7 +41,7 @@
     <button ng-click="$ctrl.submitPoints()" ng-disabled="!$ctrl.isValid()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
       Submit votes
     </button>
-    <button ng-click="$ctrl.submitPoints()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+    <button ui-sref="app.workshops-vote-results({ workshopId: $ctrl.detailedPoll._id })" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
       Show results
     </button>
   </div>

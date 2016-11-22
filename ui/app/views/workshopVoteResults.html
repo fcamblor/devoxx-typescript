@@ -1,0 +1,17 @@
+<style>
+</style>
+
+<div class="mdl-grid">
+  <div ng-repeat="vote in $ctrl.votes | orderBy: 'total':true" class="mdl-cell mdl-cell--12-col mdl-cell--12-col-phone mdl-shadow--4dp">
+    <div class="mdl-card__supporting-text">
+      <h4>{{vote.title}}</h4>
+      <p>
+        Total : {{vote.total}}
+      </p>
+      <p>
+        Voters : <span ng-repeat="voter in vote.voters">{{voter.name}} ({{voter.score}}), </span>
+      </p>
+    </div>
+  </div>
+</div>
+
