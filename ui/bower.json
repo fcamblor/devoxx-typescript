@@ -11,12 +11,9 @@
     "angular-sanitize": "1.5.8",
     "material-design-lite": "1.2.1",
     "angular-ui-router": "1.0.0-beta.3",
-<<<<<<< HEAD
-    "material-design-icons": "3.0.1"
-=======
     "lodash": "3.10.1",
-    "material-design-icons": "3.0.1"
->>>>>>> bbe9e4d... Introduced lodash
+    "material-design-icons": "3.0.1",
+    "alertify-js": "1.8.0"
   },
   "devDependencies": {
     "angular-mocks": "1.5.8",
@@ -34,6 +31,13 @@
         "./material.min.css",
         "./material.min.js",
         "https://fonts.googleapis.com/icon?family=Material+Icons"
+      ]
+    },
+    "alertify-js": {
+      "main": [
+        "./build/alertify.min.js",
+        "./build/css/alertify.min.css",
+        "./build/css/themes/default.min.css"
       ]
     }
   },
