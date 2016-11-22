@@ -1,5 +1,6 @@
 package fr.fsh.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.jongo.marshall.jackson.oid.Id;
 import org.jongo.marshall.jackson.oid.ObjectId;
 
@@ -49,6 +50,7 @@ public class Vote {
     @Size(min=3)
     List<VoteEntry> votes;
 
+    @JsonIgnore
     @AssertTrue(message="You cannot spend more than 10 points on your votes")
     public boolean isVotesSumUnderQuota() {
         return votes.stream().mapToInt(VoteEntry::getPoints).sum() <= 10;
