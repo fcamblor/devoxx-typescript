@@ -22,7 +22,7 @@
       <span class="mdl-textfield__error">Name is required !</span>
     </div>
   </div>
-  <div ng-repeat="topic in $ctrl.detailedPoll.topics | orderBy: 'date'" class="mdl-cell mdl-cell--6-col mdl-cell--12-col-phone mdl-shadow--4dp">
+  <div ng-repeat="topic in $ctrl.detailedPoll.topics | orderBy: 'date'" class="mdl-cell mdl-cell--6-col mdl-cell--12-col-phone mdl-shadow--4dp" ng-show="!topic.hidden">
     <div class="mdl-card__supporting-text">
       <h4>[{{topic.category}}] {{topic.title}}</h4>
       <p>
@@ -44,6 +44,9 @@
           <span class="mdl-radio__label">3</span>
         </label>
       </p>
+      <button ng-click="topic.hidden = true" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+        Hide
+      </button>
     </div>
   </div>
 
