@@ -11,7 +11,12 @@
     "angular-sanitize": "1.5.8",
     "material-design-lite": "1.2.1",
     "angular-ui-router": "1.0.0-beta.3",
+<<<<<<< HEAD
     "material-design-icons": "3.0.1"
+=======
+    "lodash": "3.10.1",
+    "material-design-icons": "3.0.1"
+>>>>>>> bbe9e4d... Introduced lodash
   },
   "devDependencies": {
     "angular-mocks": "1.5.8",
