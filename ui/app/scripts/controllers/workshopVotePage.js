@@ -9,16 +9,15 @@ angular.module('4sh-workshops-pollApp')
     controller: ['$http', '$stateParams', '$state', function($http, $stateParams, $state) {
       var self = this;
       console.log($stateParams.workshopId);
+
+      _.each(self.detailedPoll.topics, function(topic) { topic.score = 0; });
+
       angular.extend(self, {
         voterName: "",
-        votesPerTopic: _.reduce(self.detailedPoll.topics, function(result, topic) {
-          result[topic.title] = 0;
-          return result;
-        }, {}),
 
         remainingVotePoints: function(){
-          return 10 - _.reduce(self.votesPerTopic, function(result, score, topic) {
-            return result + Number(score);
+          return 10 - _.reduce(self.detailedPoll.topics, function(result, topic) {
+            return result + Number(topic.score);
           }, 0);
         },
 
@@ -30,8 +29,8 @@ angular.module('4sh-workshops-pollApp')
           return $http.post("/api/polls/"+$stateParams.workshopId+"/votes", {
             name: self.voterName,
             pollId: $stateParams.workshopId,
-            votes: _.map(self.votesPerTopic, function(score, topicTitle){
-              return { topicTitle: topicTitle, points: score };
+            votes: _.map(self.detailedPoll.topics, function(topic){
+              return { topicTitle: topic.title, points: topic.score };
             })
           }).then(function(){
             alertify.success("Vote saved !");

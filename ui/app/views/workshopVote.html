@@ -29,25 +29,25 @@
       <span class="mdl-textfield__error">Name is required !</span>
     </div>
   </div>
-  <div ng-repeat="topic in $ctrl.detailedPoll.topics | orderBy: 'date'" class="mdl-cell mdl-cell--6-col mdl-cell--12-col-phone mdl-shadow--4dp" ng-show="!topic.hidden">
+  <div ng-repeat="topic in $ctrl.detailedPoll.topics | orderBy: 'score':true track by topic.title" class="topic-cell mdl-cell mdl-cell--6-col mdl-cell--12-col-phone mdl-shadow--4dp" ng-show="!topic.hidden">
     <div class="mdl-card__supporting-text">
       <h4>[{{topic.category}}] {{topic.title}}</h4>
       <p>
         Attributed points :
-        <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="list-radio0-{{$index}}">
-          <input type="radio" id="list-radio0-{{$index}}" ng-model="$ctrl.votesPerTopic[topic.title]" name="vote-for-{{$index}}" class="mdl-radio__button" value="0" checked />
+        <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="list-radio0-{{topic.title}}">
+          <input type="radio" id="list-radio0-{{topic.title}}" ng-model="topic.score" name="vote-for-{{topic.title}}" class="mdl-radio__button" value="0" checked />
           <span class="mdl-radio__label">0</span>
         </label>
-        <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="list-radio1-{{$index}}">
-          <input type="radio" id="list-radio1-{{$index}}" ng-model="$ctrl.votesPerTopic[topic.title]" name="vote-for-{{$index}}" class="mdl-radio__button" value="1" />
+        <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="list-radio1-{{topic.title}}">
+          <input type="radio" id="list-radio1-{{topic.title}}" ng-model="topic.score" name="vote-for-{{topic.title}}" class="mdl-radio__button" value="1" />
           <span class="mdl-radio__label">1</span>
         </label>
-        <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="list-radio2-{{$index}}">
-          <input type="radio" id="list-radio2-{{$index}}" ng-model="$ctrl.votesPerTopic[topic.title]" name="vote-for-{{$index}}" class="mdl-radio__button" value="2" />
+        <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="list-radio2-{{topic.title}}">
+          <input type="radio" id="list-radio2-{{topic.title}}" ng-model="topic.score" name="vote-for-{{topic.title}}" class="mdl-radio__button" value="2" />
           <span class="mdl-radio__label">2</span>
         </label>
-        <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="list-radio3-{{$index}}">
-          <input type="radio" id="list-radio3-{{$index}}" ng-model="$ctrl.votesPerTopic[topic.title]" name="vote-for-{{$index}}" class="mdl-radio__button" value="3" />
+        <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="list-radio3-{{topic.title}}">
+          <input type="radio" id="list-radio3-{{topic.title}}" ng-model="topic.score" name="vote-for-{{topic.title}}" class="mdl-radio__button" value="3" />
           <span class="mdl-radio__label">3</span>
         </label>
       </p>
