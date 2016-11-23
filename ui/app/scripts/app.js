@@ -4,6 +4,7 @@ angular.module('4sh-workshops-pollApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
+  'ngAnimate',
   'ui.router'
 ])
 .run(['$rootScope', '$transitions', function($rootScope, $transitions) {

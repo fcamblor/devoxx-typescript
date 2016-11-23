@@ -13,7 +13,8 @@
     "angular-ui-router": "1.0.0-beta.3",
     "lodash": "3.10.1",
     "material-design-icons": "3.0.1",
-    "alertify-js": "1.8.0"
+    "alertify-js": "1.8.0",
+    "angular-animate": "1.5.8"
   },
   "devDependencies": {
     "angular-mocks": "1.5.8",
