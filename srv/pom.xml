@@ -116,6 +116,11 @@
             <version>2.13.0</version>
         </dependency>
         <dependency>
+            <groupId>org.tuckey</groupId>
+            <artifactId>urlrewritefilter</artifactId>
+            <version>4.0.3</version>
+        </dependency>
+        <dependency>
             <groupId>io.restx</groupId>
             <artifactId>restx-specs-tests</artifactId>
             <version>${restx.version}</version>
