@@ -6,9 +6,11 @@ angular.module('4sh-workshops-pollApp')
     bindings: {
       pollVotes: '<'
     },
-    controller: ['$http', '$stateParams', function($http, $stateParams) {
+    controller: ['$http', '$stateParams', 'Logger', function($http, $stateParams, Logger) {
       var self = this;
-      console.log($stateParams.workshopId);
+
+      Logger.log("Current workshop id : {{workshopId}}", {workshopId:$stateParams.workshopId});
+
       angular.extend(self, {
         votes: _.map(_.reduce(self.pollVotes, function(result, pollVote) {
           _.each(pollVote.votes, function(vote) {
