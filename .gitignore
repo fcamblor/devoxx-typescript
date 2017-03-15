@@ -3,3 +3,6 @@ srv/target/
 logs/
 *.iml
 ui/typings/
+ui/target/
+target/
+
