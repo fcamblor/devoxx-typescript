@@ -6,7 +6,7 @@ angular.module('4sh-workshops-pollApp')
     bindings: {
       polls: '<'
     },
-    controller: ['$http', 'Logger', function($http, Logger) {
+    controller: ['$http', 'WorkshopLogger', function($http, WorkshopLogger) {
       var self = this;
 
       angular.extend(self, {
@@ -17,7 +17,7 @@ angular.module('4sh-workshops-pollApp')
         self.polls.length = 0;
         Array.prototype.push.apply(self.polls, polls.data);
       }, function(error){
-        Logger.error(error);
+        WorkshopLogger.error(error);
       });
     }]
   });

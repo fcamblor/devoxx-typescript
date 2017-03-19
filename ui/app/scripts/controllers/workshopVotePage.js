@@ -6,10 +6,10 @@ angular.module('4sh-workshops-pollApp')
     bindings: {
       detailedPoll: '<'
     },
-    controller: ['$http', '$stateParams', '$state', 'Logger', function($http, $stateParams, $state, Logger) {
+    controller: ['$http', '$stateParams', '$state', 'WorkshopLogger', function($http, $stateParams, $state, WorkshopLogger) {
       var self = this;
 
-      Logger.log("Current workshop id : {{workshopId}}", {workshopId:$stateParams.workshopId});
+      WorkshopLogger.log("Current workshop id : {{workshopId}}", {workshopId:$stateParams.workshopId});
 
       _.each(self.detailedPoll.topics, function(topic) { topic.score = 0; });
 
@@ -37,7 +37,7 @@ angular.module('4sh-workshops-pollApp')
             alertify.success("Vote saved !");
             $state.go("app.workshops-vote-results", { workshopId: $stateParams.workshopId });
           }, function(result) {
-            Logger.error(result.data);
+            WorkshopLogger.error(result.data);
             return alertify.error(result.data);
           });
         }
