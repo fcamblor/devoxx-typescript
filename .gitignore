@@ -5,4 +5,7 @@ logs/
 ui/typings/
 ui/target/
 target/
-
+ui/app/bower_components/
+ui/dist/
+ui/.tmp/
+ui/node_modules/
