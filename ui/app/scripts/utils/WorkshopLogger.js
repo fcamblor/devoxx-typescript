@@ -2,7 +2,7 @@
 
 angular.module('4sh-workshops-pollApp')
   .service("WorkshopLogger", function(){
-    var registeredObservers = {
+    var observerCallbacksByLogEvent = {
       log: [],
       info: [],
       warn: [],
@@ -67,11 +67,11 @@ angular.module('4sh-workshops-pollApp')
       },
 
       registerLogLevelObserver: function(logEvent, callback) {
-        registeredObservers[logEvent].push(callback);
+        observerCallbacksByLogEvent[logEvent].push(callback);
       },
 
       _triggerRegisteredObservers: function(logEvent, data) {
-        _.each(registeredObservers[logEvent], function(observer) {
+        _.each(observerCallbacksByLogEvent[logEvent], function(observer) {
           observer(data);
         });
       }
