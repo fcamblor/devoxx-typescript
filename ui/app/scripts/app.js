@@ -7,7 +7,7 @@ angular.module('4sh-workshops-pollApp', [
   'ngAnimate',
   'ui.router'
 ])
-.run(['$rootScope', '$transitions', function($rootScope, $transitions) {
+.run(['$rootScope', '$transitions', 'APP_VERSION', function($rootScope, $transitions, appVersion) {
   $transitions.onSuccess({}, function(transition){
     $rootScope.pageTitle = transition.targetState()._definition.title || "TODO: PROVIDE TITLE IN STATE";
 
@@ -17,6 +17,8 @@ angular.module('4sh-workshops-pollApp', [
     // Note that it won't work if we update the DOM without changing state
     setTimeout(function(){ componentHandler.upgradeDom(); }, 300);
   });
+
+  console.log("App version "+appVersion+" configured !");
 }])
 .config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function ($stateProvider, $urlRouterProvider, $locationProvider) {
   $locationProvider.html5Mode(true).hashPrefix('!');
