@@ -38,7 +38,7 @@ var buildInterpolatedMessage = function(msg, msgParams) {
   return compiledMsg(msgParams);
 };
 
-class WorkshopLogger {
+export class WorkshopLogger {
   public static log(message, msgParams) {
     var interpolatedMsg = buildInterpolatedMessage(message, msgParams);
     console.log(interpolatedMsg);
@@ -98,8 +98,3 @@ class WorkshopLogger {
     });
   }
 }
-
-angular.module('4sh-workshops-pollApp')
-  .service("WorkshopLogger", function(){
-    return WorkshopLogger;
-  });

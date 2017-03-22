@@ -1,4 +1,10 @@
-'use strict';
+import {APP_VERSION} from "./utils/Version";
+import * as angular from "angular";
+import {WORKSHOP_LIST_PAGE} from "./controllers/workshopListPage";
+import {WORKSHOP_VOTES_PAGE} from "./controllers/workshopVotePage";
+import {WORKSHOP_VOTE_RESULTS_PAGE} from "./controllers/workshopVoteResultsPage";
+import {WorkshopLogger} from "./utils/WorkshopLogger";
+declare var componentHandler: any;
 
 angular.module('4sh-workshops-pollApp', [
   'ngCookies',
@@ -7,7 +13,7 @@ angular.module('4sh-workshops-pollApp', [
   'ngAnimate',
   'ui.router'
 ])
-.run(['$rootScope', '$transitions', 'APP_VERSION', function($rootScope, $transitions, appVersion) {
+.run(['$rootScope', '$transitions', function($rootScope, $transitions) {
   $transitions.onSuccess({}, function(transition){
     $rootScope.pageTitle = transition.targetState()._definition.title || "TODO: PROVIDE TITLE IN STATE";
 
@@ -18,7 +24,7 @@ angular.module('4sh-workshops-pollApp', [
     setTimeout(function(){ componentHandler.upgradeDom(); }, 300);
   });
 
-  console.log("App version "+appVersion+" configured !");
+  console.log("App version "+APP_VERSION+" configured !");
 }])
 .config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function ($stateProvider, $urlRouterProvider, $locationProvider) {
   $locationProvider.html5Mode(true).hashPrefix('!');
@@ -43,4 +49,11 @@ angular.module('4sh-workshops-pollApp', [
         }]
       }
     });
-}]);
+}])
+.component('workshopListPage', WORKSHOP_LIST_PAGE)
+.component('workshopVotesPage', WORKSHOP_VOTES_PAGE)
+.component('workshopVoteResultsPage', WORKSHOP_VOTE_RESULTS_PAGE)
+.constant("APP_VERSION", APP_VERSION)
+.service("WorkshopLogger", WorkshopLogger);
+
+angular.bootstrap(document, ['4sh-workshops-pollApp']);
