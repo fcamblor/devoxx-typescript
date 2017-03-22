@@ -1,4 +1,5 @@
-'use strict';
+
+// declare var angular: any;
 
 angular.module('4sh-workshops-pollApp')
   .service("WorkshopLogger", function(){
