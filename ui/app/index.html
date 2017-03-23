@@ -28,7 +28,7 @@
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
     <link rel="stylesheet" href="//code.getmdl.io/1.2.1/material.blue-pink.min.css" />
   </head>
-  <body ng-app="4sh-workshops-pollApp">
+  <body>
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="//browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -95,6 +95,11 @@
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/ts-app.js"></script>
+
+    <script type="text/javascript">
+      define("angular", [], function(){ return window.angular; });
+      require(['app'], function(){ console.log("App loaded !"); })
+    </script>
         <!-- endbuild -->
 </body>
 </html>

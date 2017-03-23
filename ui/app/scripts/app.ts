@@ -1,4 +1,11 @@
-'use strict';
+import {APP_VERSION} from "./utils/Version";
+import * as angular from "angular";
+import {WORKSHOP_VOTES_PAGE} from "./controllers/workshopVotePage";
+import {WORKSHOP_VOTE_RESULTS_PAGE} from "./controllers/workshopVoteResultsPage";
+import {WORKSHOP_LIST_PAGE} from "./controllers/workshopListPage";
+import {WorkshopLogger} from "./utils/WorkshopLogger";
+
+declare var componentHandler: any;
 
 angular.module('4sh-workshops-pollApp', [
   'ngCookies',
@@ -43,4 +50,12 @@ angular.module('4sh-workshops-pollApp', [
         }]
       }
     });
-}]);
+}])
+  .constant("APP_VERSION", APP_VERSION)
+  .component('workshopVotesPage', WORKSHOP_VOTES_PAGE)
+  .component('workshopVoteResultsPage', WORKSHOP_VOTE_RESULTS_PAGE)
+  .component('workshopListPage', WORKSHOP_LIST_PAGE)
+  .service("WorkshopLogger", WorkshopLogger);
+
+
+angular.bootstrap(document, ['4sh-workshops-pollApp']);

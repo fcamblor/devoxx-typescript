@@ -41,7 +41,7 @@ interface LogUserContext {
   props: any;
 }
 
-class WorkshopLogger {
+export class WorkshopLogger {
   public static log(message, msgParams) {
     var interpolatedMsg = buildInterpolatedMessage(message, msgParams);
     console.log(interpolatedMsg);
@@ -60,7 +60,7 @@ class WorkshopLogger {
     WorkshopLogger._triggerRegisteredObservers('warn', {message: message, interpolatedMsg: interpolatedMsg});
   }
 
-  public static error(message, msgParams, skipLog, skipGA, skipReportPopup, isTrivial) {
+  public static error(message, msgParams?, skipLog?, skipGA?, skipReportPopup?, isTrivial?) {
     var interpolatedMsg = buildInterpolatedMessage(message, msgParams);
     if(!skipLog) {
       console.error(interpolatedMsg);
@@ -104,7 +104,3 @@ class WorkshopLogger {
   }
 };
 
-angular.module('4sh-workshops-pollApp')
-  .service("WorkshopLogger", function(){
-    return WorkshopLogger;
-  });

@@ -1,10 +1,12 @@
 
 
+import {WorkshopLogger} from "../utils/WorkshopLogger";
+
 class WorkshopListController {
   private polls: any[] = [];
 
-  public static $inject = ['$http', 'WorkshopLogger'];
-  constructor($http, WorkshopLogger){
+  public static $inject = ['$http'];
+  constructor($http){
     $http.get("/api/polls").then((polls) => {
       this.polls.length = 0;
       Array.prototype.push.apply(this.polls, polls.data);
@@ -13,7 +15,7 @@ class WorkshopListController {
 }
 
 
-const WORKSHOP_LIST_PAGE = {
+export const WORKSHOP_LIST_PAGE = {
   template: `
 <div class="mdl-grid">
   <div ng-repeat="poll in $ctrl.polls" class="mdl-cell mdl-cell--6-col mdl-cell--12-col-phone mdl-shadow--4dp">
@@ -32,5 +34,3 @@ const WORKSHOP_LIST_PAGE = {
   controller: WorkshopListController
 };
 
-angular.module('4sh-workshops-pollApp')
-  .component('workshopListPage', WORKSHOP_LIST_PAGE);
