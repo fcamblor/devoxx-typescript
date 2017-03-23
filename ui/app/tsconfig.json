@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "module": "amd",
+    "target": "ES5",
+    "noImplicitAny": false,
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "outFile": "../.tmp/scripts/ts-app.js",
+    "sourceMap": true,
+    "inlineSources": true,
+    "allowJs": true
+  }
+}

@@ -30,8 +30,9 @@
     "grunt-usemin": "~2.0.0",
     "jshint-stylish": "~0.1.3",
     "load-grunt-tasks": "~0.2.0",
+    "requirejs": "~2.1.11",
     "time-grunt": "~0.2.1",
-    "requirejs": "~2.1.11"
+    "typescript": "2.2.1"
   },
   "engines": {
     "node": ">=0.8.0"
