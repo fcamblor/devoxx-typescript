@@ -47,7 +47,7 @@ angular.module('4sh-workshops-pollApp')
       exception: function(exception, msgParams, skipLog, skipGA, skipReportPopup, additionnalMessage, isTrivial) {
         var message = exception.toString();
         var interpolatedMsg = buildInterpolatedMessage(message, msgParams);
-        var stacktrace = window.printStackTrace({e: exception});
+        var stacktrace = printStackTrace({e: exception});
         if(stacktrace) {
           interpolatedMsg = "Exception : ["+interpolatedMsg+(additionnalMessage?", "+additionnalMessage:"")+"] with stacktrace : "+stacktrace;
         }
